@@ -15,6 +15,11 @@ const config = {
       $stores: 'src/stores'
 		},
 		adapter: adapter()
+	},
+	vitePlugin: {
+		experimental: {
+			inspector: true
+		}
 	}
 }
 

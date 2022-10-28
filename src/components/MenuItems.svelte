@@ -28,7 +28,7 @@
 	}
 </script>
 
-<div on:click={ open } class="card h-32" class:open={$state.menu.openItem == name}>
+<li on:click={ open } class="card h-32" class:open={$state.menu.openItem == name}>
 	<div class="flex justify-between items-center">
 		<div>{ name.charAt(0).toUpperCase() + name.slice(1) }</div>
 		{#if $state.menu.openItem == name}
@@ -36,7 +36,7 @@
 		{/if}
 	</div>
 	<slot/>
-</div>
+</li>
 
 <style>
 	/* .card {

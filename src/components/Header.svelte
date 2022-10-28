@@ -4,6 +4,6 @@
 </script>
 
 <header class="flex justify-between items-top p-2 h-16 border-b">
-	<Logo/>
+	<a href="\"><Logo/></a>
 	<Menu/>
 </header>
