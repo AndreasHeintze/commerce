@@ -26,6 +26,8 @@
 	</aside>
 	
 	<main class="w-screen p-4 snap-center shrink-0">
+		<h1>Start</h1>
+		
 		<dl>
 			<dt>Length</dt>
 			<dd>2.3 m</dd>
