@@ -5,8 +5,12 @@
 		const body = document.querySelector('body')
 		node.scrollLeft = body ? body.offsetWidth : 320
 		scrollPos = node.scrollLeft
+		
+		function swipe(ev) {
+			scrollPos = ev.target.scrollLeft
+		}
 
-		node.addScrollEvent()
+		node.addEventListener("scroll", swipe)
 		
 		return {
 			destroy() {}
