@@ -9,7 +9,7 @@
 </script>
 
 {#if $state.menu.isOpen}
-<nav class="fixed top-16 left-0 right-0 bottom-0 px-4 pb-4 scroll-smooth overflow-auto">
+<nav class="top-4 left-0 right-0 bottom-0 px-4 pb-4 scroll-smooth overflow-auto">
 	
 	<div class="card h-16 mb-4">
 		Search
@@ -24,6 +24,6 @@
 </nav>
 {/if}
 
-<div on:click={ toggleMenu } class="fixed top-6 right-6 bg-blue-500 text-white flex items-center justify-center w-14 h-14 rounded-full shadow-lg">
+<!-- <div on:click={ toggleMenu } class="fixed top-6 right-6 bg-blue-500 text-white flex items-center justify-center w-14 h-14 rounded-full shadow-lg">
 	<AnimatedHamburger />
-</div>
+</div> -->

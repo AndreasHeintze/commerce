@@ -26,17 +26,10 @@
 	</aside>
 	
 	<main class="w-screen p-4 snap-center shrink-0">
-		<dl>
-			<dt>Length</dt>
-			<dd>2.3 m</dd>
-			<dt>Weight</dt>
-			<dd>4 tonnes</dd>
-			<dt>Scroll position</dt>
-			<dd>{ scrollPos }</dd>
-		</dl>
+		<h1>Checkout</h1>
 
 		<p>
-			<a href="/checkout">Till kassan</a>
+			<a href="/">Start</a>
 		</p>
 	</main>
 </div>
