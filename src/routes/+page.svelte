@@ -1,51 +1,83 @@
 <script>
-	import Menu from '$components/Menu.svelte'
+	import state from '$stores/state';
 
-	let scrollPos = false
+	const fraction = new Intl.NumberFormat('sv-SE', {
+		style: 'currency',
+		currency: 'SEK',
+		minimumFractionDigits: 0,
+		maximumFractionDigits: 0
+	});
+	const formatter = new Intl.NumberFormat('sv-SE', {
+		style: 'currency',
+		currency: 'SEK',
+		minimumFractionDigits: 2,
+		maximumFractionDigits: 2
+	});
 
-	function initScroll(node) {
-		const body = document.querySelector('body')
-		node.scrollLeft = body ? body.offsetWidth : 320
-		scrollPos = node.scrollLeft
-		
-		function swipe(ev) {
-			scrollPos = ev.target.scrollLeft
+	function price(price) {
+		if (price % 1 == 0) {
+			price = fraction.format(price);
+		} else {
+			price = formatter.format(price);
 		}
-
-		node.addEventListener("scroll", swipe)
-		
-		return {
-			destroy() {}
-		}
+		return price;
 	}
+
+	export let data;
+
+	$: console.log('data', data);
 </script>
 
-<div use:initScroll class="flex snap-mandatory snap-x overflow-x-auto" class:invisible={scrollPos === false}>
-	<aside class="w-screen h-screen p-4 snap-center shrink-0">
-		<Menu/>
-	</aside>
-	
-	<main class="w-screen p-4 snap-center shrink-0">
-		<h1>Start</h1>
-		
-		<dl>
-			<dt>Length</dt>
-			<dd>2.3 m</dd>
-			<dt>Weight</dt>
-			<dd>4 tonnes</dd>
-			<dt>Scroll position</dt>
-			<dd>{ scrollPos }</dd>
-		</dl>
+<div class="container m-auto">
+	<h1>Start</h1>
 
-		<p>
-			<a href="/checkout">Till kassan</a>
-		</p>
-	</main>
+	<ul class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+		{#if data.products}
+			{#each data.products as product}
+				<li>
+					<div class="relative overflow-hidden rounded-xl bg-white shadow-lg">
+						<div class="flex h-64 items-center justify-center">
+							<img src={product.imageUrl} class="h-full w-full object-cover" />
+						</div>
+						<div class="p-3">
+							<h3 class="truncate" title={product.name}>{product.name}</h3>
+							<div class="text-xs">Art.nr: {product.displayid}</div>
+							<div class="mt-3">Pris: {price(product.price)}</div>
+						</div>
+					</div>
+				</li>
+			{/each}
+		{/if}
+	</ul>
+	<!-- <pre>Categories:
+		{ JSON.stringify(data.categories, null, 2) }
+	</pre> -->
+
+	<!-- <pre>Products:
+		{ JSON.stringify(data.products, null, 2) }
+	</pre> -->
+
+	<div>{$state.mainScrollPos}</div>
+
+	<p>
+		<a href="/checkout">Till kassan</a>
+	</p>
 </div>
 
 <style>
-	aside {
-		width: calc(100vw - 40px);
-		box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+	li:nth-child(odd) > div {
+		top: 20%;
 	}
+	li:nth-child(even) > div {
+		top: 0;
+	}
+	/* li:nth-child(3n+0) > div {
+		top: 20%;
+	}
+	li:nth-child(3n+1) > div {
+		top: 0;
+	}
+	li:nth-child(3n+2) > div {
+		top: -20%;
+	} */
 </style>
